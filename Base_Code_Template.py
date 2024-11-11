@@ -63,6 +63,18 @@ async def main():
     await moveMotor("bottom",120) # moves the bottom extension 120 degrees with DEFAULT_SPEED
     await moveMotor("bottom",-120) # moves the bottom extension -120 degrees with DEFAULT_SPEED
     '''
-# WRITE MISSION CODE HERE AFTER THIS LINE
+###################################################################################
+###################################################################################
+# DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE HERE AFTER THIS LINE
+###################################################################################
+###################################################################################
+
+
+
+###################################################################################
+###################################################################################
+# DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
+###################################################################################
+###################################################################################
 
 runloop.run(main())
