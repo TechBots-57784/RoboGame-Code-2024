@@ -2,7 +2,7 @@ from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop 
 
 # vars and constants
-WHEEL_CIRCUMFERENCE=17.5
+WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
 
 # ports
@@ -20,12 +20,12 @@ motor_pair.pair(motor_pair.PAIR_1,movementMotorLeft,movementMotorRight)
 
 # drive with a certain speed
 async def drive(distance, speed=DEFAULT_SPEED):
-    rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 ) # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
+    rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 ) 
     await motor_pair.move_for_degrees(motor_pair.PAIR_1, rotation_in_degrees, 0, velocity = speed, stop=motor.SMART_COAST)
 
 # drive in an arc with variying motor speeds for left and right
 async def driveInArc(distance,lv=DEFAULT_SPEED,rv=DEFAULT_SPEED):
-    rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 ) # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
+    rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 )
     await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, rotation_in_degrees, lv, rv, stop=motor.SMART_COAST)
 
 # turn left
