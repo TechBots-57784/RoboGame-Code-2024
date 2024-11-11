@@ -63,6 +63,6 @@ async def main():
     await moveMotor("bottom",120) # moves the bottom extension 120 degrees with DEFAULT_SPEED
     await moveMotor("bottom",-120) # moves the bottom extension -120 degrees with DEFAULT_SPEED
     '''
-# WRITE YOUR CODE HERE AFTER THIS LINE
+# WRITE MISSION CODE HERE AFTER THIS LINE
 
 runloop.run(main())
