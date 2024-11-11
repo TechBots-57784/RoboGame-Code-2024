@@ -4,7 +4,6 @@ import runloop, motor_pair, motor,runloop
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
-
 # ports
 COLOR_SENSOR_LEFT=port.D
 COLOR_SENSOR_RIGHT=port.C
