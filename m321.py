@@ -67,6 +67,49 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
+
+ # Run 1
+    # Side: Right Side
+    # Alignment: second line should be shown to the right wheel
+    # What are we doing : collecting 3 krill 1 coral sample and octopus()
+
+    await drive(50)
+    await turnRight(15)
+    await drive(17)
+    await turnLeft(160)
+    await drive(10)
+    await turnRight(25)
+    await turnLeft(30)
+    await drive(10)
+    await turnLeft(60)
+    await drive(45,900)
+
+    #Run 2
+    # Side: Right Side
+    # Alignment: second line should be shown to the right wheel
+    # What are we doing : Shifting ship lanes
+
+    await drive(84)
+    await turnRight(130)
+    await drive(13,100)
+    await moveMotor("bottom",500,1050)
+    #await drive (5,100)
+    # await moveMotor("bottom",100)
+
+    #Run 3
+    # Side: Right Side
+    # Alignment: 
+    # What are we doing : feeding the krill to shark
+    await turnLeft(90)
+    await drive(-70)
+    await turnRight(45)
+    await drive(-20)
+    await drive(30)
+    await turnLeft(45)
+    await drive(50)
+    await turnRight(90)
+    await drive(-10)
+    
     
     await moveMotor('bottom', -110)
     await drive(74)
