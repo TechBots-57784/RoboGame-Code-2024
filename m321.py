@@ -110,7 +110,7 @@ async def main():
     await turnRight(90)
     await drive(-10)
     
-    
+    # m1, m2 and M3
     await moveMotor('bottom', -110)
     await drive(74)
     await turnRight(35)
