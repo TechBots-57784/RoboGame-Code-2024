@@ -1,4 +1,9 @@
-# 02 - deliver shark
-# 08 - Artificial habitat
-# collect Krill
-# collect part of trident
+
+###########################################################################
+# Total Points - 60
+###########################################################################
+# 02 - deliver shark              - 10 points
+# 08 - Artificial habitat         - 30 points
+# collect Krill                   -  0 points
+# collect part of trident         - 20 points
+###########################################################################
