@@ -1,14 +1,10 @@
-############################################################
+###########################################################################
+# Total Points - 45
+###########################################################################
 # 09 - Unexpected encounter
-# 14 - Collect all samples and krill from right to left
-# 05 - Angler Fish
-############################################################
-
-
-
-
-
-
+# 14 - Collect all samples and krill from right to left        - 15 points 
+# 05 - Angler Fish                                             - 30 points
+###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
