@@ -49,12 +49,12 @@ async def turnRight(angle):
 
 # move a give ( top or bottom ) extension motor
 # async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
-#     if (side == "top"):
-#         # await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
-#         motor.reset_relative_position(EXTENSION_MOTOR_TOP,0)   
-#         await motor.run_to_relative_position(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD, acceleration=9999)
-#     if (side == "bottom"):
-#         await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
+#    if (side == "top"):
+#        # await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
+#        motor.reset_relative_position(EXTENSION_MOTOR_TOP,0)
+#        await motor.run_to_relative_position(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD, acceleration=9999)
+#    if (side == "bottom"):
+#        await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
 
 # move a give ( top or bottom ) extension motor
 async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
@@ -92,43 +92,48 @@ async def main():
 
     # reset the extension motor
     await resetExtension()
-    
+
+    # flick coral buds
+    # await drive(18)
+    # await moveMotor('top',350,1050)
+    # runloop.sleep_ms(500)
+
     # Raise the mast
     await drive(18)
     await turnRight(72)
     await drive(39,900)
     await drive(10,200)
-    
-    # Flip coral buds
+
+    # # Flip coral buds
     await drive(-20)
     await turnLeft(55)
-    await moveMotor('top',120)
+    await moveMotor('top',170)
     await drive(34)
-    await moveMotor('top',-120,1110)
+    await moveMotor('top',-170,1110)
     await drive(-10)
 
-    # Coral Nursery
+    # # Coral Nursery
     await moveMotor('top',140)
-    await turnRight(65)
+    await turnRight(75)
     await drive(-15,500)
     await drive(10)
 
-    # Release shark
-    await turnRight(50)
-    await drive(-30,800)
+    # # Release shark
+    await turnRight(42)
+    await drive(-28,1050)
 
-    # Scuba diver delivery
+    # # Scuba diver delivery
     await drive(25)
-    await turnRight(145) 
-    await drive(7)
+    await turnRight(140)
+    await drive(10,300)
     await moveMotor("top", 60, 100)
-    await drive(-7)
+    await drive(-10,300)
     await driveInArc(-23,100,300)
-    await moveMotor("top", -30, 100)
-    await driveInArc(20,137,135)
+    await moveMotor("top", -35, 100)
+    await drive(15,300)
     await moveMotor("top", -30, 100)
     await drive(-10,100)
-    await driveInArc(-85, 850, 900)
+    await driveInArc(-85, 850, 1050)
 
 ###################################################################################
 ###################################################################################
