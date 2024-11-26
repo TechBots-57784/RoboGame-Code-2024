@@ -1,8 +1,13 @@
-# 06 - Raise the Mast
-# 03 - Flip coral reef
-# 01 - Flip coral buds
-# 02 - Release shark
-# 04 - deliver Scuba Diver
+###########################################################################
+# Total Points - 130
+###########################################################################
+# 06 - Raise the Mast                    - 30 points
+# 03 - Flip coral reef                   - 20 points
+# 01 - Flip coral buds                   - 20 points
+# 02 - Release shark                     - 20 points
+# 04 - deliver Scuba Diver               - 40 points
+###########################################################################
+
 
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
