@@ -42,13 +42,27 @@ async def turnRight(angle):
     motion_sensor.reset_yaw(0) #reset yaw value
 
 # move a give ( top or bottom ) extension motor
+# async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
+#     if (side == "top"):
+#         # await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
+#         motor.reset_relative_position(EXTENSION_MOTOR_TOP,0)   
+#         await motor.run_to_relative_position(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD, acceleration=9999)
+#     if (side == "bottom"):
+#         await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
+
+# move a give ( top or bottom ) extension motor
 async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
     if (side == "top"):
-        # await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
-        motor.reset_relative_position(EXTENSION_MOTOR_TOP,0)   
-        await motor.run_to_relative_position(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD, acceleration=9999)
+        await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
     if (side == "bottom"):
         await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
+
+async def resetExtension(extension=EXTENSION_MOTOR_TOP):
+    if motor.relative_position(extension) <= 180:
+        resetDirection=motor.SHORTEST_PATH
+    else:
+        resetDirection=motor.LONGEST_PATH
+    await motor.run_to_absolute_position(extension,0,720,direction=resetDirection,stop=motor.HOLD)
 
 # main code
 async def main():
@@ -70,6 +84,9 @@ async def main():
 ###################################################################################
 ###################################################################################
 
+    # reset the extension motor
+    await resetExtension()
+    
     # Raise the mast
     await drive(18)
     await turnRight(72)
@@ -114,3 +131,4 @@ async def main():
 ###################################################################################
 
 runloop.run(main())
+sys.exit()
