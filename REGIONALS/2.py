@@ -106,7 +106,7 @@ async def main():
     await drive(39,900)
     await drive(10,200)
 
-    # # Flip coral buds
+    # Flip coral buds
     await drive(-20)
     await turnLeft(55)
     await moveMotor('top',170)
@@ -114,17 +114,17 @@ async def main():
     await moveMotor('top',-170,1110)
     await drive(-10)
 
-    # # Coral Nursery
+    # Coral Nursery
     await moveMotor('top',140)
     await turnRight(75)
     await drive(-15,500)
     await drive(10)
 
-    # # Release shark
+    # Release shark
     await turnRight(42)
     await drive(-28,1050)
 
-    # # Scuba diver delivery
+    # Scuba diver delivery
     await drive(25)
     await turnRight(140)
     await drive(10,300)
@@ -136,6 +136,9 @@ async def main():
     await moveMotor("top", -30, 100)
     await drive(-10,100)
     await driveInArc(-85, 850, 1050)
+
+    # reset extension
+    await resetExtension()
 
 ###################################################################################
 ###################################################################################
