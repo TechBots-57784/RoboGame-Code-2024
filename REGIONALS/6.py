@@ -1,8 +1,10 @@
 ###########################################################################
-# Total Points - 30 - 40
+# Total Points - 110
 ###########################################################################
-# 09 - Unexpected encounter delivery                         - 10
-# 10 - Submersible                                           - 20 + 10
+# 00 - Collect unidentified creature    - 20 points
+# 13 - Shipping Lanes                    - 30 points
+# 11 - Sonar Discovery                    - 30 points
+# 12 - Feed the whale                    - 50 points
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
@@ -81,19 +83,58 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    await resetExtension()
-    await drive(75, 800)
-    await turnLeft(90)
-    await drive(45, 800)
-    await turnRight(38)
-    await moveMotor("top", 80, 900)
-    await drive(15, 250)
-    await moveMotor("top", 260, 200)
-    await runloop.sleep_ms(1500)
-    await drive(-5)
-    await turnRight(100)
-    await drive(-10)
+
+    # Side: Right Side
+    # Alignment:
+    # What are we doing : feeding the krill to shark
+    # await turnLeft(90)
+    # await drive(-70)
+    # await turnRight(45)
+    # await drive(-20)
+    # runloop.sleep_ms(1000)
+    # await drive(25)
+    # await turnLeft(45)
+    # await drive(50)
+    # await turnLeft(35)
+    # await drive(-20,900)
+    # await drive(5)
+    # await turnRight(120)
+    # await drive(-25)
     
+
+    # shipping lanes
+
+    # await resetExtension()
+    # await drive(38)
+    # await turnRight(25)
+    # await moveMotor('top',90,100)#pulling the ship up
+    # await drive(3)
+    # await moveMotor('top', 100, 100)
+    # await turnRight(40)
+    # await drive(-5)
+    # await driveInArc(30, 950, 300)
+    # await runloop.sleep_ms(4000)
+
+    await resetExtension()
+    await drive(40, 800)
+    await turnLeft(45)
+    await moveMotor("top", 80, 900)
+    await drive(71, 800)
+    await moveMotor("top", 200, 200)
+    await runloop.sleep_ms(1500)
+    await moveMotor("top", -150, 200)
+    await drive(-5)
+    await moveMotor("top", 40, 100)
+    await moveMotor("top", 20, 100)
+    await turnRight(95) #95
+    await moveMotor("top", -30)
+    await turnLeft(20)
+    await moveMotor("top", 90)
+    await driveInArc(-16, 400, 900)
+
+
+    # await drive(-10)
+
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
