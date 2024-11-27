@@ -1,2 +1,7 @@
-# 10 - send over the submersibe 
-# 09 - deliver unidentified creature.
+###########################################################################
+# Total Points - 40
+###########################################################################
+# 10 - send over the submersibe           - 30 points
+# 09 - deliver unidentified creature.     - 10 points
+###########################################################################
+
