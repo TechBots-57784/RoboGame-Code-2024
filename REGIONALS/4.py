@@ -1,3 +1,9 @@
-# 03 - deliver reef segments
-# 15 - drop all samples and deliver boat.
-# send robo with krill to right side.
+
+###########################################################################
+# Total Points - 45
+###########################################################################
+# 03 - deliver reef segments                  - 15 points
+# 15 - drop all samples and deliver boat      - 30
+# send robo with krill to right side.         - 0 points
+###########################################################################
+
