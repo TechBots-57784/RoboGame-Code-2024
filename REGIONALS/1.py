@@ -82,18 +82,33 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    await driveInArc(60,900,1050)
+    # await driveInArc(60,900,1050)
+    # await turnRight(15)
+    # await drive(12)
+    # await turnRight(15)
+    # await turnLeft(100)
+    # await drive(40)
+    # await turnLeft(28) 
+    # await drive(21)
+    # await turnRight(10)
+    # await drive(60)
+    # await turnLeft(60)
+    # await drive(65)
+
+    await resetExtension()
+    await moveMotor('top',120)
+    await turnLeft(5)
+    await drive(56)
     await turnRight(15)
-    await drive(12)
-    await turnRight(15)
-    await turnLeft(100)
-    await drive(40)
-    await turnLeft(28) 
-    await drive(21)
-    await turnRight(10)
-    await drive(60)
-    await turnLeft(60)
-    await drive(65)
+    await drive(10)
+    await moveMotor('top',-120)
+    await drive(-5)
+    await turnRight(20)
+    await turnLeft(90)
+    await drive(35)
+    await turnLeft(35)
+    await drive(28)
+
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
