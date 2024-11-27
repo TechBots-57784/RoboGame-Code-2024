@@ -76,8 +76,9 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    await resetExtension()
-  
+    await resetExtension(EXTENSION_MOTOR_TOP)
+    await resetExtension(EXTENSION_MOTOR_BOTTOM)
+
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
