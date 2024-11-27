@@ -82,7 +82,6 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    await resetExtension()
     await driveInArc(60,900,1050)
     await turnRight(15)
     await drive(12)
