@@ -90,7 +90,7 @@ async def main():
     await drive(15, 250)
     await moveMotor("top", 260, 200)
     await runloop.sleep_ms(1500)
-    await moveMotor("top", -260, 900)
+    await drive(-5)
     await turnRight(100)
     await drive(-10)
     
