@@ -94,10 +94,7 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-
-    # reset the extension motor
-    await resetExtension()
-
+    
     # flick coral buds
     # await drive(18)
     # await moveMotor('top',350,1050)
