@@ -76,18 +76,15 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    # shipping lanes
-    await drive(48,800)
-    await turnRight(73)
-    await moveMotor('top',90,100)#pulling the ship up
-    await turnRight(20)
-    await drive(-5)
-    await moveMotor('top',-80,800)
-    await turnLeft(65)
-    await moveMotor('top',35,50)
-    await drive(30,200)
-    await drive(-90)
-    await moveMotor ('top',-42,800)
+    await turnLeft(90)
+    await drive(-70)
+    await turnRight(45)
+    await drive(-20)
+    await drive(30)
+    await turnLeft(45)
+    await drive(50)
+    await turnRight(90)
+    await drive(-10)
 
 ###################################################################################
 ###################################################################################
