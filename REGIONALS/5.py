@@ -1,9 +1,10 @@
 ###########################################################################
 # Total Points - 110
 ###########################################################################
-# 13 - Shipping Lanes        - 30 points
-# 11 - Sonar Discovery       - 30 points
-# 12 - Feed the whale        - 50 points
+# 00 - Collect unidentified creature       - 20 points
+# 13 - Shipping Lanes                      - 30 points
+# 11 - Sonar Discovery                     - 30 points
+# 12 - Feed the whale                      - 50 points
 ###########################################################################
 
 
