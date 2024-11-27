@@ -2,10 +2,10 @@
 # Total Points - 130
 ###########################################################################
 # 06 - Raise the Mast                    - 30 points
-# 03 - Flip coral reef                   - 20 points
-# 01 - Flip coral buds                   - 20 points
-# 02 - Release shark                     - 20 points
-# 04 - deliver Scuba Diver               - 40 points
+# 03 - Flip coral reef                - 20 points
+# 01 - Flip coral buds                - 20 points
+# 02 - Release shark                    - 20 points
+# 04 - deliver Scuba Diver            - 40 points
 ###########################################################################
 
 
@@ -94,7 +94,7 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    
+
     # flick coral buds
     # await drive(18)
     # await moveMotor('top',350,1050)
@@ -117,7 +117,7 @@ async def main():
     # Coral Nursery
     await moveMotor('top',140)
     await turnRight(75)
-    await drive(-15,500)
+    await drive(-15,700)
     await drive(10)
 
     # Release shark
@@ -133,6 +133,7 @@ async def main():
     await driveInArc(-23,100,300)
     await moveMotor("top", -35, 100)
     await drive(15,300)
+    await turnRight(10)
     await moveMotor("top", -30, 100)
     await drive(-10,100)
     await driveInArc(-85, 850, 1050)
