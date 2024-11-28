@@ -102,20 +102,20 @@ async def main():
 
     # Raise the mast
     await drive(18)
-    await turnRight(72)
+    await turnRight(73)
     await drive(39,900)
     await drive(10,200)
 
     # Flip coral buds
     await drive(-20)
-    await turnLeft(55)
+    await turnLeft(53)
     await moveMotor('top',170)
     await drive(34)
     await moveMotor('top',-170,1110)
     await drive(-10)
 
     # Coral Nursery
-    await moveMotor('top',140)
+    await moveMotor('top',155)
     await turnRight(75)
     await drive(-15,700)
     await drive(10)
@@ -126,12 +126,12 @@ async def main():
 
     # Scuba diver delivery
     await drive(25)
-    await turnRight(140)
+    await turnRight(139)
     await drive(10,300)
     await moveMotor("top", 60, 100)
     await drive(-10,300)
     await driveInArc(-23,100,300)
-    await moveMotor("top", -35, 100)
+    await moveMotor("top", -25, 100)
     await drive(15,300)
     await turnRight(10)
     await moveMotor("top", -30, 100)
