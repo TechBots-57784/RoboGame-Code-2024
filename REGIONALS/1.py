@@ -2,8 +2,8 @@
 # Total Points - 45
 ###########################################################################
 # 09 - Unexpected encounter
-# 14 - Collect all samples and krill from right to left        - 15 points 
-# 05 - Angler Fish                                             - 30 points
+# 14 - Collect all samples and krill from right to left        - 15 points
+# 05 - Angler Fish                                            - 30 points
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
@@ -88,25 +88,24 @@ async def main():
     # await turnRight(15)
     # await turnLeft(100)
     # await drive(40)
-    # await turnLeft(28) 
+    # await turnLeft(28)
     # await drive(21)
     # await turnRight(10)
     # await drive(60)
     # await turnLeft(60)
     # await drive(65)
-
     await resetExtension()
     await moveMotor('top',120)
-    await turnLeft(5)
+    await turnLeft(10)
     await drive(56)
-    await turnRight(15)
+    await turnRight(25)
     await drive(10)
     await moveMotor('top',-120)
     await drive(-6)
-    await turnRight(20)
-    await turnLeft(90)
+    await turnRight(15)
+    await turnLeft(88)
     await drive(35)
-    await turnLeft(35)
+    await turnLeft(38)
     await moveMotor('top',120)
     await drive(28)
     await turnRight(5)
@@ -117,7 +116,7 @@ async def main():
     await drive(10)
     await moveMotor("top", -120)
     await driveInArc(-13,350,100)
-    await driveInArc(70,950,1050)
+    await driveInArc(70,1050,950)
 
 ###################################################################################
 ###################################################################################
