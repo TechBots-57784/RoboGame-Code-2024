@@ -7,10 +7,9 @@
 # 02 - Release shark                    - 20 points
 # 04 - deliver Scuba Diver            - 40 points
 ###########################################################################
-
-
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
+import time
 import sys
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
@@ -53,27 +52,37 @@ async def turnRight(angle):
     motion_sensor.reset_yaw(0) #reset yaw value
 
 # move a give ( top or bottom ) extension motor
-# async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
-#    if (side == "top"):
-#        # await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
-#        motor.reset_relative_position(EXTENSION_MOTOR_TOP,0)
-#        await motor.run_to_relative_position(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD, acceleration=9999)
-#    if (side == "bottom"):
-#        await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
-
-# move a give ( top or bottom ) extension motor
-async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
+async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
+    
+    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+    else:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
+    
     if (side == "top"):
-        await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
-    if (side == "bottom"):
-        await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
+        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+        elif direction == 'drop' and abs_value > degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+        else:
+            print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+
+    # if (side == "bottom"):
+    #     if direction == 'lift'and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < degrees:
+    #         motor_direction=motor.CLOCKWISE
+    #     elif direction == 'drop' and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) > degrees:
+    #         motor_direction=motor.COUNTERCLOCKWISE
+    #     else:
+    #         print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
 async def resetExtension(extension=EXTENSION_MOTOR_TOP):
-    if motor.relative_position(extension) <= 180:
-        resetDirection=motor.SHORTEST_PATH
+    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
     else:
-        resetDirection=motor.LONGEST_PATH
-    await motor.run_to_absolute_position(extension,0,720,direction=resetDirection,stop=motor.HOLD)
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
+    if abs_value in range(4,330):
+        print (abs_value)
+        await motor.run_to_absolute_position(extension,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
 # main code
 async def main():
@@ -100,6 +109,9 @@ async def main():
     # await moveMotor('top',350,1050)
     # runloop.sleep_ms(500)
 
+    # reset extension
+    await resetExtension()
+
     # Raise the mast
     await drive(18)
     await turnRight(73)
@@ -109,13 +121,13 @@ async def main():
     # Flip coral buds
     await drive(-20)
     await turnLeft(53)
-    await moveMotor('top',170)
+    await moveMotor('lift','top',170)
     await drive(34)
-    await moveMotor('top',-170,1110)
+    await moveMotor('drop','top',170,1110)
     await drive(-10)
 
     # Coral Nursery
-    await moveMotor('top',155)
+    await moveMotor('lift','top',155)
     await turnRight(75)
     await drive(-15,700)
     await drive(10)
@@ -128,18 +140,15 @@ async def main():
     await drive(25)
     await turnRight(139)
     await drive(10,300)
-    await moveMotor("top", 60, 100)
+    await moveMotor('lift','top',60,100)
     await drive(-10,300)
     await driveInArc(-23,100,300)
-    await moveMotor("top", -25, 100)
+    await moveMotor('drop','top',25, 100)
     await drive(15,300)
     await turnRight(10)
-    await moveMotor("top", -30, 100)
+    await moveMotor('drop','top',30, 100)
     await drive(-10,100)
     await driveInArc(-85, 850, 1050)
-
-    # reset extension
-    await resetExtension()
 
 ###################################################################################
 ###################################################################################
