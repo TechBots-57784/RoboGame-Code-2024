@@ -9,7 +9,8 @@
 
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
-
+import time
+import sys
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
@@ -51,11 +52,37 @@ async def turnRight(angle):
     motion_sensor.reset_yaw(0) #reset yaw value
 
 # move a give ( top or bottom ) extension motor
-async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
+async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
+    
+    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+    else:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
+    
     if (side == "top"):
-        await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
-    if (side == "bottom"):
-        await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
+        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+        elif direction == 'drop' and abs_value > degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+        else:
+            print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+
+    # if (side == "bottom"):
+    #     if direction == 'lift'and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < degrees:
+    #         motor_direction=motor.CLOCKWISE
+    #     elif direction == 'drop' and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) > degrees:
+    #         motor_direction=motor.COUNTERCLOCKWISE
+    #     else:
+    #         print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+
+async def resetExtension(extension=EXTENSION_MOTOR_TOP):
+    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+    else:
+        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
+    if abs_value in range(4,330):
+        print (abs_value)
+        await motor.run_to_absolute_position(extension,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
 # main code
 async def main():
