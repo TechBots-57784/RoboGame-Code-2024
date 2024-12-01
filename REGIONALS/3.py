@@ -1,13 +1,18 @@
-
 ###########################################################################
-# Total Points - 60
+# Total Points - 180
 ###########################################################################
-# 02 - deliver shark            - 10 points
-# 08 - Artificial habitat       - 30 points
+# 06 - Raise the Mast                    - 30 points
+# 03 - Flip coral reef                - 20 points
+# 01 - Flip coral buds                - 20 points
+# 02 - Release shark                    - 20 points
+# 04 - deliver Scuba Diver            - 40 points
+# 03 - deliver reef segments                  - 15 points
+# 15 - drop all samples and deliver boat      - 30
+# # 08 - Artificial habitat       - 30 points
 # collect Krill                 -  0 points
 # collect part of trident       - 20 points
+#go to the right side of the map with krills
 ###########################################################################
-
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
@@ -107,43 +112,74 @@ async def main():
 ###################################################################################
 ###################################################################################
 
-    # reset the extension motor
-    await resetExtension(EXTENSION_MOTOR_TOP)
-    await resetExtension(EXTENSION_MOTOR_BOTTOM)
-    await moveMotor('lift','top',120,400)
-    # await moveMotor('bottom',200)
-    
-    # # deliver shark
-    await drive(85,1050)
-    await turnLeft(15)
-    # await moveMotor('bottom',-100)
-    await drive(-30,1050)
-    # await turnLeft(5)
-    await drive(10)
-    await moveMotor('bottom',-110)
-    # await turnLeft(20)
-    # await moveMotor('top',-30,400)
-    # await turnLeft(35)
+    # flick coral buds
+    # await drive(18)
+    # await moveMotor('top',350,1050)
+    # runloop.sleep_ms(500)
 
-    # Artificial habitat
-    # await drive(-20)
-    # await turnRight(36)
-    # await drive(31)
-    # await moveMotor('top',-40,200)
-    # await drive(-18,200)
-    # await drive(2,100)
-    # await moveMotor('top',100,400)
+    # reset extension
+    # await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
+    await resetExtension()
+    # # Raise the mast
+    await drive(18)
+    await turnRight(73)
+    await drive(39,900)
+    await drive(10,200)
+
+    # # Flip coral buds
+    await drive(-20)
+    await turnLeft(53)
+    await moveMotor('lift','top',170)
+    await drive(34)
+    await moveMotor('drop','top',0,1110)
+    await drive(-10)
+
+    # # Coral Nursery
+    await moveMotor('lift','top',158)
+    await turnRight(75)
+    await drive(-18,700)
+    await drive(10)
+
+    # # Release shark
+    await turnRight(42)
+    await drive(-28,1050)
+    await drive (5)
+
+    # retrying flip coral buds
+    await turnLeft(75)
+    await drive(7)
+    await moveMotor('drop','top',0,1110)
+
+    # Scuba diver delivery
+    await moveMotor('lift','top',160)
+    await turnRight(100)
+    await moveMotor('lift','top',170)
+    await turnRight (75)
+    await drive(3)
+    await moveMotor('lift','top',230,20)
+    await drive(-3)
+    await turnLeft (160)
+    await moveMotor('drop','top',200,100)
+    await turnLeft (15)
+    await drive(-3)
+    await turnLeft(50)
+    await drive(-80)
+
+    # Droping samples in boat
+    await moveMotor('lift','top',250)
+    await runloop.sleep_ms(3000)
+    await drive(15)
+    await moveMotor('drop','top',100,300)
+    await drive(-10)
+    await moveMotor('lift','top',300)
     
-    # return
-    # await driveInArc(-75,800,700)
-    # collect trident and drop in boat
-    # await drive(-25)
-    # await turnLeft(15)
-    # await drive(10)
-    # await moveMotor('top',80,200)
-    
-    # Collect krill
-    
+    # push coral samples 
+    await runloop.sleep_ms(3000)
+    await drive(10,100)
+    await drive(-15)
+    await runloop.sleep_ms(3000)
+    await drive(65)
+
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
