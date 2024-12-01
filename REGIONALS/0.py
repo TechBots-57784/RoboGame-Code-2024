@@ -49,27 +49,29 @@ async def turnRight(angle):
 
 # move a give ( top or bottom ) extension motor
 async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
-    
-    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
-    else:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
-    
     if (side == "top"):
+        if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
+            abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+        else:
+            abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
         if direction == 'lift' and degrees <= 330 and abs_value < degrees:
             await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
         elif direction == 'drop' and abs_value > degrees:
             await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
         else:
-            print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+            print ("EXTENSION_MOTOR_TOP - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
-    # if (side == "bottom"):
-    #     if direction == 'lift'and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < degrees:
-    #         motor_direction=motor.CLOCKWISE
-    #     elif direction == 'drop' and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) > degrees:
-    #         motor_direction=motor.COUNTERCLOCKWISE
-    #     else:
-    #         print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+    if (side == "bottom"):
+        if motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < 0:
+            abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM) + 360
+        else:
+            abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM)
+        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+        elif direction == 'drop' and abs_value > degrees:
+            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+        else:
+            print ("EXTENSION_MOTOR_BOTTOM - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
 async def resetExtension(extension=EXTENSION_MOTOR_TOP):
     if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
