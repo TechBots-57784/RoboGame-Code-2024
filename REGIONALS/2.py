@@ -53,12 +53,12 @@ async def turnRight(angle):
 
 # move a give ( top or bottom ) extension motor
 async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
-    
+
     if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
         abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
     else:
         abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
-    
+
     if (side == "top"):
         if direction == 'lift' and degrees <= 330 and abs_value < degrees:
             await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
@@ -68,12 +68,12 @@ async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
             print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
     # if (side == "bottom"):
-    #     if direction == 'lift'and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < degrees:
-    #         motor_direction=motor.CLOCKWISE
-    #     elif direction == 'drop' and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) > degrees:
-    #         motor_direction=motor.COUNTERCLOCKWISE
-    #     else:
-    #         print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+    #    if direction == 'lift'and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < degrees:
+    #        motor_direction=motor.CLOCKWISE
+    #    elif direction == 'drop' and motor.absolute_position(EXTENSION_MOTOR_BOTTOM) > degrees:
+    #        motor_direction=motor.COUNTERCLOCKWISE
+    #    else:
+    #        print ("current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
 async def resetExtension(extension=EXTENSION_MOTOR_TOP):
     if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
@@ -110,45 +110,67 @@ async def main():
     # runloop.sleep_ms(500)
 
     # reset extension
+    # await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
     await resetExtension()
-
-    # Raise the mast
+    # # Raise the mast
     await drive(18)
     await turnRight(73)
     await drive(39,900)
     await drive(10,200)
 
-    # Flip coral buds
+    # # Flip coral buds
     await drive(-20)
     await turnLeft(53)
     await moveMotor('lift','top',170)
     await drive(34)
-    await moveMotor('drop','top',170,1110)
+    await moveMotor('drop','top',0,1110)
     await drive(-10)
 
-    # Coral Nursery
-    await moveMotor('lift','top',155)
+    # # Coral Nursery
+    await moveMotor('lift','top',158)
     await turnRight(75)
-    await drive(-15,700)
+    await drive(-18,700)
     await drive(10)
 
-    # Release shark
+    # # Release shark
     await turnRight(42)
     await drive(-28,1050)
+    await drive (5)
+
+    # retrying flip coral buds
+    await turnLeft(75)
+    await drive(7)
+    await moveMotor('drop','top',0,1110)
 
     # Scuba diver delivery
-    await drive(25)
-    await turnRight(139)
-    await drive(10,300)
-    await moveMotor('lift','top',60,100)
-    await drive(-10,300)
-    await driveInArc(-23,100,300)
-    await moveMotor('drop','top',25, 100)
-    await drive(15,300)
-    await turnRight(10)
-    await moveMotor('drop','top',30, 100)
-    await drive(-10,100)
-    await driveInArc(-85, 850, 1050)
+    await moveMotor('lift','top',160)
+    await turnRight(100)
+    await moveMotor('lift','top',170)
+    await turnRight (75)
+    await drive(3)
+    await moveMotor('lift','top',230,20)
+    await drive(-3)
+    await turnLeft (160)
+    await moveMotor('drop','top',200,100)
+    await turnLeft (15)
+    await drive(-3)
+    await turnLeft(50)
+    await drive(-80)
+
+    # Droping samples in boat
+    await moveMotor('lift','top',250)
+    await runloop.sleep_ms(3000)
+    await drive(15)
+    await moveMotor('drop','top',100,300)
+    await drive(-10)
+    await moveMotor('lift','top',300)
+    
+    # push coral samples 
+    await runloop.sleep_ms(3000)
+    await drive(10,100)
+    await drive(-15)
+    await runloop.sleep_ms(3000)
+    await drive(65)
 
 ###################################################################################
 ###################################################################################
