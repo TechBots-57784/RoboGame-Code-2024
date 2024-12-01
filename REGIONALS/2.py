@@ -8,6 +8,7 @@
 # 04 - deliver Scuba Diver            - 40 points
 # 03 - deliver reef segments                  - 15 points
 # 15 - drop all samples and deliver boat      - 30
+# go to right side with krils
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
