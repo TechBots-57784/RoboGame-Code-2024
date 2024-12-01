@@ -6,6 +6,8 @@
 # 01 - Flip coral buds                - 20 points
 # 02 - Release shark                    - 20 points
 # 04 - deliver Scuba Diver            - 40 points
+# 03 - deliver reef segments                  - 15 points
+# 15 - drop all samples and deliver boat      - 30
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
