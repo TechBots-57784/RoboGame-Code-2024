@@ -1,17 +1,7 @@
 ###########################################################################
 # Total Points - 180
 ###########################################################################
-# 06 - Raise the Mast                    - 30 points
-# 03 - Flip coral reef                - 20 points
-# 01 - Flip coral buds                - 20 points
-# 02 - Release shark                    - 20 points
-# 04 - deliver Scuba Diver            - 40 points
-# 03 - deliver reef segments                  - 15 points
-# 15 - drop all samples and deliver boat      - 30
-# # 08 - Artificial habitat       - 30 points
-# collect Krill                 -  0 points
-# collect part of trident       - 20 points
-#go to the right side of the map with krills
+#1-Coral nursery
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
