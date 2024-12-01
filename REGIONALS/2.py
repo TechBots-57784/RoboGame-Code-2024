@@ -8,7 +8,10 @@
 # 04 - deliver Scuba Diver            - 40 points
 # 03 - deliver reef segments                  - 15 points
 # 15 - drop all samples and deliver boat      - 30
-# go to right side with krills
+# # 08 - Artificial habitat       - 30 points
+# collect Krill                 -  0 points
+# collect part of trident       - 20 points
+#go to the right side of the map with krills
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
