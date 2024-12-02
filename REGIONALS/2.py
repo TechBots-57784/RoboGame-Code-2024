@@ -1,9 +1,9 @@
 ###########################################################################
-# Total Points - 180
+# Total Points - 30
 ###########################################################################
-#1-Coral nursery
+#1-Coral nursery- 30
 ###########################################################################
-from hub import motion_sensor, port
+
 import runloop, motor_pair, motor,runloop
 import time
 import sys
@@ -101,74 +101,15 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-
-    # flick coral buds
-    # await drive(18)
-    # await moveMotor('top',350,1050)
-    # runloop.sleep_ms(500)
-
-    # reset extension
+     # reset extension
     # await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
     await resetExtension()
-    # # Raise the mast
-    await drive(18)
-    await turnRight(73)
-    await drive(39,900)
-    await drive(10,200)
-
-    # # Flip coral buds
-    await drive(-20)
-    await turnLeft(53)
-    await moveMotor('lift','top',170)
-    await drive(34)
-    await moveMotor('drop','top',0,1110)
-    await drive(-10)
-
-    # # Coral Nursery
-    await moveMotor('lift','top',158)
-    await turnRight(75)
-    await drive(-18,700)
-    await drive(10)
-
-    # # Release shark
-    await turnRight(42)
-    await drive(-28,1050)
-    await drive (5)
-
-    # retrying flip coral buds
-    await turnLeft(75)
-    await drive(7)
-    await moveMotor('drop','top',0,1110)
-
-    # Scuba diver delivery
-    await moveMotor('lift','top',160)
-    await turnRight(100)
-    await moveMotor('lift','top',170)
-    await turnRight (75)
-    await drive(3)
-    await moveMotor('lift','top',230,20)
-    await drive(-3)
-    await turnLeft (160)
-    await moveMotor('drop','top',200,100)
-    await turnLeft (15)
-    await drive(-3)
-    await turnLeft(50)
-    await drive(-80)
-
-    # Droping samples in boat
-    await moveMotor('lift','top',250)
-    await runloop.sleep_ms(3000)
-    await drive(15)
-    await moveMotor('drop','top',100,300)
-    await drive(-10)
-    await moveMotor('lift','top',300)
-    
-    # push coral samples 
-    await runloop.sleep_ms(3000)
-    await drive(10,100)
-    await drive(-15)
-    await runloop.sleep_ms(3000)
-    await drive(65)
+    await drive(14, 200)
+    await moveMotor("lift","top",140,100)
+    await drive(9, 85)
+    await moveMotor("lift","top",210,55)
+    await drive(3, 85)
+    await drive(-26)
 
 ###################################################################################
 ###################################################################################
@@ -178,3 +119,4 @@ async def main():
 
 runloop.run(main())
 sys.exit()
+
