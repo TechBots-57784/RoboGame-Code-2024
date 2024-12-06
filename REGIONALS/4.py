@@ -1,11 +1,3 @@
-
-###########################################################################
-# Total Points - 45
-###########################################################################
-# 03 - deliver reef segments                  - 15 points
-# 15 - drop all samples and deliver boat      - 30
-# send robo with krill to right side.         - 0 points
-###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
@@ -51,41 +43,70 @@ async def turnRight(angle):
     motion_sensor.reset_yaw(0) #reset yaw value
 
 # move a give ( top or bottom ) extension motor
-async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
+async def moveMotor(side, degrees, speed=DEFAULT_SPEED):
     if (side == "top"):
-        if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
-            abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
-        else:
-            abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
-        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
-        elif direction == 'drop' and abs_value > degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
-        else:
-            print ("EXTENSION_MOTOR_TOP - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
-
+        await motor.run_for_degrees(EXTENSION_MOTOR_TOP, degrees, speed, stop = motor.HOLD)
     if (side == "bottom"):
-        if motor.absolute_position(EXTENSION_MOTOR_BOTTOM) < 0:
-            abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM) + 360
-        else:
-            abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM)
-        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
-        elif direction == 'drop' and abs_value > degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
-        else:
-            print ("EXTENSION_MOTOR_BOTTOM - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
+        await motor.run_for_degrees(EXTENSION_MOTOR_BOTTOM, degrees, speed, stop = motor.HOLD)
 
-async def resetExtension(extension=EXTENSION_MOTOR_TOP):
-    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+async def resetExtensiontop(extension=EXTENSION_MOTOR_TOP):
+    if motor.relative_position(extension) <= 180:
+        resetDirection=motor.SHORTEST_PATH
     else:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
-    if abs_value in range(4,330):
-        print (abs_value)
-        await motor.run_to_absolute_position(extension,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
+        resetDirection=motor.LONGEST_PATH
+    await motor.run_to_absolute_position(extension,0,720,direction=resetDirection,stop=motor.HOLD)
+
+async def resetExtensionbottom(extension=EXTENSION_MOTOR_BOTTOM):
+    if motor.relative_position(extension) <= 180:
+        resetDirection=motor.SHORTEST_PATH
+    else:
+        resetDirection=motor.LONGEST_PATH
+    await motor.run_to_absolute_position(extension,0,720,direction=resetDirection,stop=motor.HOLD)
 
 # main code
+async def main():
+    '''
+    await drive(50) # drives forward 50 cms straight with DEFAULT_SPEED
+    await drive(-50) # drives backward 50 cms straight with DEFAULT_SPEED
+    await driveInArc(50,100,300) # drives in an arc for 50 cm forward with the left motor moving at speed 100 and the right motor moving at speed 300
+    await driveInArc(-50,100,300) # drives in an arc for 50 cm backward with the left motor moving at speed 100 and the right motor moving at speed 300
+    await turnLeft(50) # turns left 50 degrees with DEFAULT_SPEED
+    await turnRight(50) # turns right 50 degrees with DEFAULT_SPEED
+    await moveMotor("top",120) # moves the top extension 120 degrees with DEFAULT_SPEED
+    await moveMotor("top",-120) # moves the top extension -120 degrees with DEFAULT_SPEED
+    await moveMotor("bottom",120) # moves the bottom extension 120 degrees with DEFAULT_SPEED
+    await moveMotor("bottom",-120) # moves the bottom extension -120 degrees with DEFAULT_SPEED
+    '''
+###################################################################################
+###################################################################################
+# DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
+###################################################################################
+###################################################################################
+    await turnRight(59)
+    await resetExtensiontop()
+    await resetExtensionbottom()
+    await moveMotor("top", 180)
+    await moveMotor("bottom", 180)
+    await drive(60,1050)
+    await drive(5,250)
+    await moveMotor('bottom',-85,200)
+    await drive(-15,1050)
+    await drive(8)
+    await turnLeft(2)
+    await moveMotor("bottom", -95)
+    await drive(-60,1050)
+
+
+
+###################################################################################
+###################################################################################
+# DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
+###################################################################################
+###################################################################################
+
+runloop.run(main())
+sys.exit()
+de
 async def main():
     '''
     await drive(50) # drives forward 50 cms straight with DEFAULT_SPEED
