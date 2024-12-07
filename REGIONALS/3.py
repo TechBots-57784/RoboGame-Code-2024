@@ -84,10 +84,10 @@ async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
             print ("EXTENSION_MOTOR_BOTTOM - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 330."% (abs_value, degrees))
 
 async def resetExtension(extension=EXTENSION_MOTOR_TOP):
-    if motor.absolute_position(EXTENSION_MOTOR_TOP) < 0:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP) + 360
+    if motor.absolute_position(extension) < 0:
+        abs_value = motor.absolute_position(extension) + 360
     else:
-        abs_value = motor.absolute_position(EXTENSION_MOTOR_TOP)
+        abs_value = motor.absolute_position(extension)
     if abs_value in range(4,330):
         print (abs_value)
         await motor.run_to_absolute_position(extension,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
