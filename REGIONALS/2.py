@@ -3,7 +3,7 @@
 ###########################################################################
 #1-Coral nursery- 30
 ###########################################################################
-
+from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
 import sys
