@@ -1,16 +1,12 @@
-
-###########################################################################
-# Total Points - 20
-###########################################################################
-# equipment inspection                                          - 20 points
-###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
 import sys
+
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
+
 # ports
 MOVEMENT_MOTOR_RIGHT=port.F #red
 MOVEMENT_MOTOR_LEFT=port.B #yellow
