@@ -118,7 +118,7 @@ async def main():
     await drive(28)
     await turnRight(10)
     await drive(30)
-    await turnLeft(7)
+    await turnLeft(5)
     await drive(25)
     await moveMotor('drop','top', 0)
     await driveInArc(-10,350,200)
