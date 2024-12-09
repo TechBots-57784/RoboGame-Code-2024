@@ -109,8 +109,8 @@ async def main():
     await drive(9, 85)
     await moveMotor("lift","top",210,55)
     await drive(3, 85)
-    await moveMotor("drop","top",150,55)
-    await drive(-26)
+    await moveMotor("drop","top",120)
+    await drive(-40,1050)
 
 ###################################################################################
 ###################################################################################
