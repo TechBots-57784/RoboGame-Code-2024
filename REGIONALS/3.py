@@ -146,7 +146,7 @@ async def main():
     await drive (6)
 
     # retrying flip coral buds
-    await turnLeft(75)
+    await turnLeft(78)
     await drive(6)
     await moveMotor('drop','top',0,1110)
 
@@ -154,7 +154,7 @@ async def main():
     await moveMotor('lift','top',140)
     await turnRight(100)
     await moveMotor('lift','top',175)
-    await turnRight (75)
+    await turnRight (78)
     await drive(3)
     await moveMotor('lift','top',230,20)
     await drive(-5)
