@@ -79,9 +79,9 @@ async def resetExtension(extension=EXTENSION_MOTOR_TOP):
         abs_value = motor.absolute_position(extension) + 360
     else:
         abs_value = motor.absolute_position(extension)
-    if abs_value in range(4,330):
+    if abs_value in range(0,330):
         print (abs_value)
-        await motor.run_to_absolute_position(extension,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
+        await motor.run_to_absolute_position(extension,5,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
 # main code
 async def main():
