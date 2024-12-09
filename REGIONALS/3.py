@@ -181,16 +181,17 @@ async def main():
     # deliver shark
     await runloop.sleep_ms(1500)
     await drive(65,1050)
-    await moveMotor('drop','top',160)
-    await drive(-12,1050)
-    await turnLeft(30)
+    await drive(-10,1050)
+    await moveMotor('drop','top',150)
+    await turnLeft(25)
 
     # go to right and also solve octopus on the way
     await moveMotor('lift','top',300)
-    await turnRight(100)
-    await drive(75,900)
+    await turnRight(125)
+    await drive(75,1050)
     await turnLeft(120)
-    
+    await drive(15,1050)
+    await drive(-45,1050)
 
 
 
