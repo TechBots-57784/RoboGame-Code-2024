@@ -111,16 +111,9 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-
-    # flick coral buds
-    # await drive(18)
-    # await moveMotor('top',350,1050)
-    # runloop.sleep_ms(500)
-
     # reset extension
-    # await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
     await resetExtension()
-    # # Raise the mast
+    # Raise the mast
     await drive(18)
     await turnRight(73)
     await drive(39,900)
@@ -151,33 +144,33 @@ async def main():
     await moveMotor('drop','top',0,1110)
 
     # Scuba diver delivery
-    await moveMotor('lift','top',160)
-    await turnRight(100)
     await moveMotor('lift','top',170)
+    await turnRight(100)
+    await moveMotor('lift','top',180)
     await turnRight (75)
     await drive(3)
-    await moveMotor('lift','top',230,20)
-    await drive(-3)
+    await moveMotor('lift','top',230,40)
+    await drive(-5)
     await turnLeft (160)
     await moveMotor('drop','top',200,100)
     await turnLeft (15)
     await drive(-3)
-    await turnLeft(50)
+    await turnLeft(55)
     await drive(-80)
 
     # Droping samples in boat
     await moveMotor('lift','top',250)
-    await runloop.sleep_ms(3000)
+    await runloop.sleep_ms(1500)
     await drive(15)
     await moveMotor('drop','top',100,300)
     await drive(-10)
     await moveMotor('lift','top',300)
     
     # push coral samples 
-    await runloop.sleep_ms(3000)
+    await runloop.sleep_ms(800)
     await drive(10,100)
     await drive(-15)
-    await runloop.sleep_ms(3000)
+    await runloop.sleep_ms(1500)
     await drive(65)
 
 ###################################################################################
