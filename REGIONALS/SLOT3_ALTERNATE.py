@@ -153,11 +153,11 @@ async def main():
     # Scuba diver delivery
     await moveMotor('lift','top',140)
     await turnRight(100)
-    await moveMotor('lift','top',170)
+    await moveMotor('lift','top',175)
     await turnRight (75)
     await drive(3)
     await moveMotor('lift','top',230,20)
-    await drive(-3)
+    await drive(-5)
     await turnLeft (160)
     await moveMotor('drop','top',200,100)
     await turnLeft (15)
@@ -167,7 +167,7 @@ async def main():
 
     # Droping samples in boat
     await moveMotor('lift','top',250)
-    await runloop.sleep_ms(3000)
+    await runloop.sleep_ms(2000)
     await drive(15)
     await moveMotor('drop','top',100)
     await drive(-10)
