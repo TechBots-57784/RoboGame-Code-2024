@@ -13,7 +13,7 @@
 # collect part of trident    - 20 points
 #go to the right side of the map with krills
 ###########################################################################
-from hub import motion_sensor, port 
+from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
 import sys
@@ -88,9 +88,9 @@ async def resetExtension(extension=EXTENSION_MOTOR_TOP):
         abs_value = motor.absolute_position(extension) + 360
     else:
         abs_value = motor.absolute_position(extension)
-    if abs_value in range(0,330):
+    if abs_value in range(5,330):
         print (abs_value)
-        await motor.run_to_absolute_position(extension,5,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
+        await motor.run_to_absolute_position(extension,7,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
 # main code
 async def main():
@@ -111,22 +111,16 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-
-    # flick coral buds
-    # await drive(18)
-    # await moveMotor('top',350,1050)
-    # runloop.sleep_ms(500)
-
     # reset extension
-    # await motor.run_to_absolute_position(EXTENSION_MOTOR_TOP,3,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
     await resetExtension()
-    # # Raise the mast
+    
+    # Raise the mast
     await drive(18)
     await turnRight(73)
     await drive(39,900)
     await drive(10,200)
 
-    # # Flip coral buds
+    # Flip coral buds
     await drive(-20)
     await turnLeft(53)
     await moveMotor('lift','top',170)
@@ -134,19 +128,19 @@ async def main():
     await moveMotor('drop','top',0,1110)
     await drive(-10)
 
-    # # Coral Nursery
+    # Coral Nursery
     await moveMotor('lift','top',158)
     await turnRight(75)
     await drive(-18,700)
     await drive(10)
 
-    # # Release shark
+    # Release shark
     await turnRight(42)
     await drive(-28,1050)
     await drive (6)
 
     # retrying flip coral buds
-    await turnLeft(78)
+    await turnLeft(83)
     await drive(6)
     await moveMotor('drop','top',0,1110)
 
@@ -154,46 +148,48 @@ async def main():
     await moveMotor('lift','top',140)
     await turnRight(100)
     await moveMotor('lift','top',175)
-    await turnRight (78)
+    await turnRight (85)
     await drive(3)
     await moveMotor('lift','top',230,20)
-    await drive(-5)
-    await turnLeft (160)
-    await moveMotor('drop','top',200,100)
-    await turnLeft (15)
     await drive(-3)
-    await turnLeft(55)
-    await drive(-80,900)
+    await turnLeft (160)
+    await moveMotor('drop','top',200,20)
+    await drive(2)
+    await turnLeft (20)
+    await drive(-3)
+    await turnLeft(50)
+    await driveInArc(-85,950,1050)
 
     # Droping samples in boat
     await moveMotor('lift','top',250)
-    await runloop.sleep_ms(2000)
+    await runloop.sleep_ms(1500)
     await drive(15)
     await moveMotor('drop','top',100)
     await drive(-10)
-    await moveMotor('lift','top',300)
+    await moveMotor('lift','top',330)
 
     # push coral samples
-    await runloop.sleep_ms(1500)
+    await runloop.sleep_ms(750)
     await drive(10,250)
     await drive(-25,900)
-    
+
     # deliver shark
-    await runloop.sleep_ms(1500)
+    await runloop.sleep_ms(500)
     await drive(65,1050)
+
+    # flip trident 
     await drive(-10,1050)
-    await moveMotor('drop','top',150)
-    await turnLeft(25)
+    await turnLeft(3)
+    await moveMotor('drop','top',140)
+    await turnLeft(20)
 
     # go to right and also solve octopus on the way
-    await moveMotor('lift','top',300)
-    await turnRight(125)
-    await drive(75,1050)
-    await turnLeft(120)
-    await drive(15,1050)
-    await drive(-45,1050)
-
-
+    await moveMotor('lift','top',330)
+    await turnRight(110)
+    await drive(83,1050)
+    await turnLeft(125)
+    await drive(40,1050)
+    await drive(-50,1050)
 
 ###################################################################################
 ###################################################################################
