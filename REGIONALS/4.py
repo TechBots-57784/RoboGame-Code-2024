@@ -110,7 +110,7 @@ async def main():
     # shipping lanes
     await drive(38)
     await turnRight(25)
-    await moveMotor('lift','top',70,100)
+    await moveMotor('lift','top',90,100)
     await drive(2)
     await moveMotor('lift','top',120)
     await turnRight(40)
