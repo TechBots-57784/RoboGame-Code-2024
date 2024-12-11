@@ -112,7 +112,7 @@ async def main():
     await turnRight(25)
     await moveMotor('lift','top',90,100)
     await drive(2)
-    await moveMotor('lift','top',120)
+    await moveMotor('lift','top',170)
     await turnRight(40)
     await drive(-5)
 
@@ -128,7 +128,7 @@ async def main():
     await moveMotor("drop", "top", 40)
     await turnLeft(15)
     await moveMotor('lift','top',100)
-    await driveInArc(-10,700,1050)
+    await driveInArc(-13,500,1050)
 ###############################################################################
 ###############################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
