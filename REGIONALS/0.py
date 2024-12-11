@@ -66,7 +66,7 @@ async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
             abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM) + 360
         else:
             abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM)
-        if direction == 'lift' and degrees <= 330 and abs_value < degrees:
+        if direction == 'lift' and degrees <= 350 and abs_value < degrees:
             await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
         elif direction == 'drop' and abs_value > degrees:
             await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
@@ -78,9 +78,9 @@ async def resetExtension(extension=EXTENSION_MOTOR_TOP):
         abs_value = motor.absolute_position(extension) + 360
     else:
         abs_value = motor.absolute_position(extension)
-    if abs_value in range(0,330):
+    if abs_value in range(5,350):
         print (abs_value)
-        await motor.run_to_absolute_position(extension,5,720,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
+        await motor.run_to_absolute_position(extension,10,900,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
 # main code
 async def main():
@@ -103,7 +103,6 @@ async def main():
 ###################################################################################
     await resetExtension(EXTENSION_MOTOR_TOP)
     await resetExtension(EXTENSION_MOTOR_BOTTOM)
-
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
