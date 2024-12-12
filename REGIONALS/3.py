@@ -113,7 +113,7 @@ async def main():
 ###################################################################################
     # reset extension
     await resetExtension()
-    
+
     # Raise the mast
     await drive(18)
     await turnRight(73)
@@ -177,19 +177,18 @@ async def main():
     await runloop.sleep_ms(500)
     await drive(65,1050)
 
-    # flip trident 
+    # flip trident
     await drive(-10,1050)
-    await turnLeft(3)
-    await turnLeft(20)
     await moveMotor('drop','top',140)
+    await turnLeft(20)
 
     # go to right and also solve octopus on the way
-    await turnRight(110)
     await moveMotor('lift','top',330)
+    await turnRight(110)
     await drive(83,1050)
     await turnLeft(125)
     await drive(40,1050)
-    await drive(-50,1050)
+    await driveInArc(-50,1050, 700)
 
 ###################################################################################
 ###################################################################################
