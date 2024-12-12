@@ -184,12 +184,11 @@ async def main():
 
     # go to right and also solve octopus on the way
     await moveMotor('lift','top',330)
-    await turnRight(110)
+    await turnRight(100)
     await drive(83,1050)
     await turnLeft(125)
     await drive(36,1050)
-    await driveInArc(-50,1050, 9a00)
-
+    await drive(-36,1050)
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
