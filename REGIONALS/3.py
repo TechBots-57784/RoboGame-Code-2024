@@ -143,7 +143,7 @@ async def main():
     await turnLeft(81)
     await drive(6)
     await moveMotor('drop','top',10,1110)
-    
+
     # Scuba diver delivery
     await moveMotor('lift','top',140)
     await turnRight(98)
@@ -153,7 +153,7 @@ async def main():
     await moveMotor('lift','top',230,20)
     await drive(-3)
     await turnLeft (160)
-    await moveMotor('drop','top',200,20)
+    await moveMotor('drop','top',190,20)
     await drive(2)
     await turnLeft (20)
     await drive(-3)
