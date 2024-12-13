@@ -110,10 +110,10 @@ async def main():
     await turnRight(45)
     await drive(-20)
     await drive(30)
-    await turnLeft(45)
-    await drive(50)
-    await turnRight(90)
-    await drive(-10)
+    # await turnLeft(45)
+    # await drive(50)
+    # await turnRight(90)
+    # await drive(-10)
 
 ###################################################################################
 ###################################################################################
