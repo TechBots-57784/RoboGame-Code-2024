@@ -106,7 +106,7 @@ async def main():
     
     #lift coral reef
     await drive(14, 200)
-    await moveMotor("lift","top",140,100)
+    await moveMotor("lift","top",120,100)
     await drive(9,85)
     await moveMotor("lift","top",210,55)
     await drive(3,85)
