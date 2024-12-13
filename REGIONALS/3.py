@@ -158,9 +158,9 @@ async def main():
     await turnLeft (20)
     await drive(-3)
     await turnLeft(50)
-    await drive(-80)
+    await drive(-80,1050)
     await turnRight(30)
-    await drive(-20)
+    await drive(-20,1050)
     # Droping samples in boat
     await moveMotor('lift','top',250)
     await runloop.sleep_ms(1500)
