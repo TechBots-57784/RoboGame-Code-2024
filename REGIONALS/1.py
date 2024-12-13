@@ -126,9 +126,9 @@ async def main():
     await drive(12)
     await moveMotor('drop','top',10)
     await driveInArc(-13,350,100)
-    await drive(30,900)
+    await drive(50,900)
     await turnLeft(15)
-    await drive(30,900)
+    await drive(20,900)
 
 ###################################################################################
 ###################################################################################
