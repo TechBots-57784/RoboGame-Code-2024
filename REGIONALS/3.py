@@ -188,7 +188,7 @@ async def main():
     await drive(83,1050)
     await turnLeft(125)
     await drive(36,1050)
-    await drive(-36,1050)
+    await drive(-50,1050)
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
