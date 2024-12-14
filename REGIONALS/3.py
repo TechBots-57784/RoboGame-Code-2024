@@ -180,12 +180,7 @@ async def main():
 
     # flip trident
     await drive(-10,1050)
-    await moveMotor('drop','top',140)
-    await turnLeft(20)
-
-    # go to right and also solve octopus on the way
-    await moveMotor('lift','top',330)
-    await turnRight(100)
+    await turnRight(70)
     await drive(83,1050)
     await turnLeft(125)
     await drive(36,1050)
