@@ -1,8 +1,9 @@
 ###########################################################################
-# Total Points - 45
+# Total Points - 70
 ###########################################################################
-# 14 - Collect all samples and krill from right to left        - 15 points
-# 05 - Angler Fish                                             - 30 points
+# equipment inspection                                        - 20 points
+# release unidentified creature                               -20 points
+# angler fish                                                 -30 points
 ###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
@@ -11,6 +12,8 @@ import sys
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
+rotation=0
+
 # ports
 MOVEMENT_MOTOR_RIGHT=port.F #red
 MOVEMENT_MOTOR_LEFT=port.B #yellow
@@ -18,6 +21,7 @@ COLOR_SENSOR_RIGHT=port.D # no color
 COLOR_SENSOR_LEFT=port.C # red and yellow
 EXTENSION_MOTOR_TOP=port.E #blue
 EXTENSION_MOTOR_BOTTOM=port.A #green
+
 
 # prep the hub
 motion_sensor.reset_yaw(0)
@@ -67,10 +71,25 @@ async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
             abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM) + 360
         else:
             abs_value = motor.absolute_position(EXTENSION_MOTOR_BOTTOM)
-        if direction == 'lift' and degrees <= 350 and abs_value < degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
-        elif direction == 'drop' and abs_value > degrees:
-            await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+        if direction == 'lift' and abs_value < degrees:
+            rotation=degrees//360
+            degrees=degrees%360
+            if rotation > 0:
+                for i in range(rotation):
+                    await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, 360, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+                await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+            else:
+                await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
+            
+        if direction == 'drop' and abs_value > degrees:
+            rotation=degrees//360
+            degrees=degrees%360
+            if rotation > 0:
+                for i in range(rotation):
+                    await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, 360, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+                await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
+            else:
+                await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.COUNTERCLOCKWISE, stop = motor.BRAKE)
         else:
             print ("EXTENSION_MOTOR_BOTTOM - current position is %d..desired position is %d. desired position cannot be less than current position or greater than 350."% (abs_value, degrees))
 
@@ -102,39 +121,52 @@ async def main():
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
 ###################################################################################
-    await resetExtension()
-    await moveMotor('lift','top',150)
-    await turnLeft(10)
-    await drive(56)
-    await turnRight(25)
-    await drive(10)
-    await moveMotor('drop','top',10)
-    await drive(-6)
-    await turnRight(15)
-    await turnLeft(88)
-    await drive(35)
-    await turnLeft(38)
-    await moveMotor('lift','top',150)
-    await drive(28)
-    await turnRight(10)
-    await drive(30)
-    await turnLeft(5)
-    await drive(25)
-    await moveMotor('drop','top', 10)
-    await driveInArc(-10,350,200)
-    await moveMotor('lift','top',150)
-    await drive(12)
-    await moveMotor('drop','top',10)
-    await driveInArc(-13,350,100)
-    await drive(50,900)
-    await turnLeft(15)
-    await drive(20,900)
+    # await resetExtension()
+    # await moveMotor('lift','top',250)
+    # await drive(-3)
+    # await turnLeft(40)
+    # await drive(-35,1050)
+    # await drive(35,1050)
+    # await turnLeft(145)
+    # await drive(30)
+    for i in range(rotation):
+    # await moveMotor('lift','bottom',950)
+    # await resetExtension(EXTENSION_MOTOR_BOTTOM)
+    # await turnLeft(90)
+    # await drive(100)
+    # await turnLeft(90)
+    # await drive(50)
+
+
+
+        
+    # await drive(10
+    # await moveMotor('drop','top',10)
+    # await drive(-6)
+    # await turnRight(15)
+    # await turnLeft(88)
+    # await drive(35)
+    # await turnLeft(38)
+    # await moveMotor('lift','top',150)
+    # await drive(28)
+    # await turnRight(10)
+    # await drive(30)
+    # await turnLeft(5)
+    # await drive(25)
+    # await moveMotor('drop','top', 10)
+    # await driveInArc(-10,350,200)
+    # await moveMotor('lift','top',150)
+    # await drive(12)
+    # await moveMotor('drop','top',10)
+    # await driveInArc(-13,350,100)
+    # await drive(50,900)
+    # await turnLeft(15)
+    # await drive(20,900)
 
 ###################################################################################
 ###################################################################################
 # DO NOT CHANGE ANYTHING AFTER THIS LINE. WRITE MISSION CODE BEFORE THIS LINE
 ###################################################################################
 ###################################################################################
-
 runloop.run(main())
 sys.exit()
