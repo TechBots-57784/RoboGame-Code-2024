@@ -7,6 +7,7 @@ from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
 import sys
+
 # vars and constants
 WHEEL_CIRCUMFERENCE=17.5 # 27.6 is the circumference of ADB large wheel and 17.5 is the circumference of ADB small wheel
 DEFAULT_SPEED=650 # Small motor (essential): -660 to 660 Medium motor: -1110 to 1110 Large motor: -1050 to 1050
@@ -31,7 +32,6 @@ async def drive(distance, speed=DEFAULT_SPEED):
     rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 )
     await motor_pair.move_for_degrees(motor_pair.PAIR_1, rotation_in_degrees, 0, velocity = speed, stop=motor.HOLD)
 
-# drive in an arc with variying motor speeds for left and right
 async def driveInArc(distance,lv=DEFAULT_SPEED,rv=DEFAULT_SPEED):
     rotation_in_degrees = round( ( distance / WHEEL_CIRCUMFERENCE ) * 360 )
     await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, rotation_in_degrees, lv, rv, stop=motor.HOLD)
@@ -78,7 +78,7 @@ async def moveMotor(direction,side,degrees, speed=DEFAULT_SPEED):
                 await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
             else:
                 await motor.run_to_absolute_position(EXTENSION_MOTOR_BOTTOM, degrees, speed, direction=motor.CLOCKWISE, stop = motor.BRAKE)
-            
+
         if direction == 'drop' and abs_value > degrees:
             rotation=degrees//360
             degrees=degrees%360
@@ -118,28 +118,76 @@ async def main():
 ###################################################################################
 # DO NOT CHANGE ANYTHING BEFORE THIS LINE. WRITE MISSION CODE AFTER THIS LINE
 ###################################################################################
-###################################################################################
-    # Slot 2: collecting items
-    # await drive(70,950)
-    # await turnLeft(87)
-    # await drive(107,950)
-    # await turnLeft(50)
-    # await drive(60,950)
+###################################################################################   
+    
+    # Slot 0 - Reset extensions
+    # await resetExtension()
 
     # Slot 1: shipping lanes and unidentfied creature
     # await resetExtension()
     # await drive(33)
-    # await turnRight(14)
+    # await turnRight(16)
     # await moveMotor('lift','top',90,100)
     # await drive(2)
     # await moveMotor('lift','top',170)
     # await turnRight(40)
     # await drive(-15)
+    # await moveMotor('drop','top',15)
     # await turnRight(75)
-    # await drive(-25)
+    # await drive(-25,900)
     # await driveInArc(50,900,1050)
+    # await moveMotor('lift','top',320)
 
-    # boat to latch
+    # Slot 2: collecting items
+    # await drive(70,950)
+    # await turnLeft(87)
+    # await drive(105,950)
+    # await turnLeft(50)
+    # await drive(60,950)
+
+    # slot 3 - pick trident part(s) and get coral tree
+    # await resetExtension()
+    # await drive(5)
+    # await moveMotor('lift','top',130)
+    # await turnRight(50)
+    # await drive(50)
+    # await drive(5,200)
+    # await moveMotor('lift','top',220,200)
+    # await turnRight(140)
+    # await drive(15)
+    # await moveMotor('drop','top',60,200)
+    # await moveMotor('lift','top',130)
+    # await turnRight(105)
+    # await drive(40)
+    # await moveMotor('drop','top',20)
+    # await turnLeft(80)
+    # await drive(30)
+    # await moveMotor('lift','top',230)
+    
+    # slot 5 - Scuba diver, sea bed and submersible
+    # await drive(40)
+    # await turnRight(25)
+    # await drive(33)
+    # await moveMotor('drop','top',175,100)
+    # await drive(4)
+    # await moveMotor('drop','top',180,100)
+    # await turnRight(5)
+    # await drive(-10,300)
+    # await turnRight(28)
+    # await moveMotor('drop','top',120,100)
+    # await drive(43)
+    # await moveMotor('lift','top',200,100)
+    # await runloop.sleep_ms(1000)
+    # await drive(-17)
+    # await turnLeft(12)
+    # await moveMotor('drop','top',100,100)
+    # await drive(10,200)
+    # await moveMotor('lift','top',250,100)
+    # await turnRight(15)
+    # await drive(-10)
+    # await driveInArc(-105, 900, 750)
+        
+    # Slot 6 - boat to latch
     # await drive(70)
     # await driveInArc(-20,600,400)
     # await driveInArc(-15,300,900)
