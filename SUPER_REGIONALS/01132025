@@ -159,10 +159,12 @@ async def main():
     # await drive(30)
     # await moveMotor('lift','top',230)
 
-    # slot 4 - Raise the mast, Flip coral buds, Coral Nursery,
+    # slot 4 - hang coral tree, Raise the mast, Flip coral buds, Coral Nursery,
     # Release shark, retrying flip coral buds, come home,
-    # push coral samples, deliver shark
+    # push coral samples, deliver shark ( 45 seconds )
     await resetExtension()
+    # TODO // Hang Coral Tree 
+
     # 
     await drive(18)
     await turnRight(73)
@@ -201,7 +203,7 @@ async def main():
     await runloop.sleep_ms(500)
     await drive(65,1050)
 
-    # slot 5 - Scuba diver, sea bed and submersible
+    # slot 5 - Scuba diver, sea bed and submersible ( 20 )
     await drive(40)
     await turnRight(25)
     await drive(33)
@@ -224,12 +226,37 @@ async def main():
     await drive(-8)
     await driveInArc(-105, 900, 750)
 
-    # Slot 6 - boat to latch
+    # Slot 6 - boat to latch ( 15 )
     # await drive(70)
     # await driveInArc(-20,600,400)
     # await driveInArc(-15,300,700)
     # await drive(40)
     # await drive(-10)
+
+    # Slot 7 - Feed the whale ( 10 )
+    await turnLeft(90)
+    await drive(-70)
+    await turnRight(45)
+    await drive(-20)
+    await drive(30)
+    await turnLeft(45)
+    await drive(50)
+    await turnRight(90)
+    await drive(-10)
+
+    # Slot 8 - sonar discovery and deliver unidentified creature ( 15 )
+    await turnLeft(80)
+    await drive(20)
+    await turnLeft(30)
+    await moveMotor('lift','top',100)
+    await drive(42)
+    await drive(-4)
+    await turnRight(98)
+    await drive(-9)
+    await moveMotor("drop", "top", 40)
+    await turnLeft(15)
+    await moveMotor('lift','top',100)
+    await driveInArc(-13,500,1050)
 
 ###################################################################################
 ###################################################################################
