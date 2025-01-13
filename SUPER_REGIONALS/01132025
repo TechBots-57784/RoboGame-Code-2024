@@ -1,8 +1,3 @@
-###########################################################################
-# Total Points - 20
-###########################################################################
-# equipment inspection                                        - 20 points
-###########################################################################
 from hub import motion_sensor, port
 import runloop, motor_pair, motor,runloop
 import time
@@ -123,7 +118,7 @@ async def main():
     # Slot 0 - Reset extensions
     # await resetExtension()
 
-    # Slot 1: shipping lanes and unidentfied creature
+    # Slot 1: shipping lanes and unidentfied creature ( 8 seconds )
     # await resetExtension()
     # await drive(33)
     # await turnRight(16)
@@ -138,14 +133,14 @@ async def main():
     # await driveInArc(50,900,1050)
     # await moveMotor('lift','top',320)
 
-    # Slot 2: collecting items
+    # Slot 2: collecting items ( 15 seconds )
     # await drive(70,950)
     # await turnLeft(87)
     # await drive(105,950)
     # await turnLeft(50)
     # await drive(60,950)
 
-    # slot 3 - pick trident part(s) and get coral tree
+    # slot 3 - pick trident part(s) and get coral tree ( 10 seconds )
     # await resetExtension()
     # await drive(5)
     # await moveMotor('lift','top',130)
@@ -163,6 +158,48 @@ async def main():
     # await turnLeft(80)
     # await drive(30)
     # await moveMotor('lift','top',230)
+
+    # slot 4 - Raise the mast, Flip coral buds, Coral Nursery,
+    # Release shark, retrying flip coral buds, come home,
+    # push coral samples, deliver shark
+    await resetExtension()
+    # 
+    await drive(18)
+    await turnRight(73)
+    await drive(39,900)
+    await drive(10,200)
+    # 
+    await drive(-20)
+    await turnLeft(53)
+    await moveMotor('lift','top',170)
+    await drive(34)
+    await moveMotor('drop','top',10,1110)
+    await drive(-10)
+    # 
+    await moveMotor('lift','top',158)
+    await turnRight(75)
+    await drive(-18,700)
+    await drive(10)
+    # 
+    await turnRight(42)
+    await drive(-28,1050)
+    await drive (6)
+    # 
+    await turnLeft(81)
+    await drive(6)
+    await moveMotor('drop','top',10,1110)
+`   # 
+    await turnLeft(81)
+    await drive(-80,1050)
+    await turnRight(30)
+    await drive(-20,1050)
+    # 
+    await runloop.sleep_ms(750)
+    await drive(10,250)
+    await drive(-25,900)
+    # 
+    await runloop.sleep_ms(500)
+    await drive(65,1050)
 
     # slot 5 - Scuba diver, sea bed and submersible
     await drive(40)
