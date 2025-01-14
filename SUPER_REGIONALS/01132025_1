@@ -16,7 +16,6 @@ COLOR_SENSOR_LEFT=port.C # red and yellow
 EXTENSION_MOTOR_TOP=port.E #blue
 EXTENSION_MOTOR_BOTTOM=port.A #green
 
-
 # prep the hub
 motion_sensor.reset_yaw(0)
 motor_pair.unpair(motor_pair.PAIR_1)
@@ -159,9 +158,7 @@ async def main():
     # await drive(30)
     # await moveMotor('lift','top',200)
 
-    # slot 4 - hang coral tree, Raise the mast, Flip coral buds, Coral Nursery,
-    # Release shark, retrying flip coral buds, come home,
-    # push coral samples, deliver shark ( 45 seconds )
+    # slot 4 - hang coral tree
     # 
     # await drive(27)
     # await moveMotor('drop','top',180,200)
@@ -174,13 +171,13 @@ async def main():
 
     # await resetExtension()
 
-    # # Raise the mast
+    # Raise the mast
     # await drive(18)
     # await turnRight(73)
     # await drive(33,900)
     # await drive(10,200)
     
-    # # Flip coral buds
+    # Flip coral buds
     # await drive(-18)
     # await turnLeft(52)
     # await moveMotor('lift','top',170)
@@ -188,17 +185,16 @@ async def main():
     # await moveMotor('drop','top',10,1110)
     # await drive(-10)
 
-    # # Coral Nursery
+    # Coral Nursery
     # await moveMotor('lift','top',158)
     # await turnRight(65)
     # await drive(-18,700)
     # await drive(10)
     
-    # # shark release
+    # shark release
     # await turnRight(42)
     # await drive(-28,1050)
     # await driveInArc(95,1050,800)
-    
 
     # slot 6 - Scuba diver, sea bed and submersible ( 20 )
     # await drive(40)
