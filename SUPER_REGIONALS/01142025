@@ -1,4 +1,4 @@
-from hub import motion_sensor, port
+from hub import motion_sensor, port, button
 import runloop, motor_pair, motor,runloop
 import time
 import sys
@@ -94,6 +94,11 @@ async def resetExtension(extension=EXTENSION_MOTOR_TOP):
         print (abs_value)
         await motor.run_to_absolute_position(extension,10,900,direction=motor.COUNTERCLOCKWISE,stop=motor.BRAKE)
 
+async def waitForNext():
+    while not button.pressed(button.RIGHT):
+        sleep(0.2)
+        pass
+        
 # main code
 async def main():
     '''
