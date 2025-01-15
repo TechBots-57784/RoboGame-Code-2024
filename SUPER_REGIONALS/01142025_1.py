@@ -115,7 +115,7 @@ async def main():
 ###################################################################################
 
     # Backup code for sending the robot from left to right
-    # await drive(200)
+    # await drive(200,1050)
 
     # Slot 0 - Reset extensions
     # await resetExtension()
