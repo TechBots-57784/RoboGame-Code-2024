@@ -208,7 +208,15 @@ async def main():
     # await drive(-28,1050)
     # come home
     # await driveInArc(95,1050,800)
-
+    # push coral samples
+    # await runloop.sleep_ms(2000)
+    # await drive(10,200)
+    # await drive(-20,200)
+    # Deliver Shark
+    # await runloop.sleep_ms(2000)
+    # await drive(50,900)
+    # await drive(-60,900)
+    
     # slot 6
     # Scuba diver, sea bed and submersible ( 20 )
 
@@ -234,7 +242,7 @@ async def main():
     # await driveInArc(-105, 900, 750)
     # await runloop.sleep_ms(2000)
     # await drive(12) 
-    # // TODO - Send coral segments to the back of the robot.
+    # // TODO - Send coral segments to the back of the boat.
     # await moveMotor('drop','top',50,300)
 
     # Slot 7 
