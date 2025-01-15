@@ -241,9 +241,9 @@ async def main():
     # await drive(-8)
     # await driveInArc(-105, 900, 750)
     # await runloop.sleep_ms(2000)
-    # await drive(12) 
     # // TODO - Send coral segments to the back of the boat.
     # await moveMotor('drop','top',50,300)
+    # await drive(-20) 
 
     # Slot 7 
     # boat to latch, crab mission ( 15 )
@@ -272,9 +272,11 @@ async def main():
     # await turnLeft(30)
     # await turnRight(75)
     # await moveMotor('drop','top',0)
-    # await drive(20,200)
      # // TODO - sonar discovery and deliver unidentified creature.
-
+    # await drive(25,200)
+    # await drive(-15,200)
+    # await turnLeft(30)
+    # await drive(25,200)
 
 ###################################################################################
 ###################################################################################
