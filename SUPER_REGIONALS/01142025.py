@@ -114,6 +114,9 @@ async def main():
 ###################################################################################
 ###################################################################################
 
+    # Backup code for sending the robot from left to right
+    await drive(200,1050)
+
     # Slot 0 - Reset extensions
     # await resetExtension()
 
@@ -201,7 +204,9 @@ async def main():
     # come home
     # await driveInArc(95,1050,800)
 
-    # slot 6 - Scuba diver, sea bed and submersible ( 20 )
+    # slot 6
+    # Scuba diver, sea bed and submersible ( 20 )
+
     # await drive(40)
     # await turnRight(25)
     # await drive(33)
@@ -245,6 +250,7 @@ async def main():
 
     # Slot 8
     #  Feed the whale, sonar discovery and unidentified creature to its place ( 20 )
+
     # await drive(-65)
     # await turnRight(35)
     # await drive(-20,300)
