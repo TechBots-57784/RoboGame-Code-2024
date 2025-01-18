@@ -251,7 +251,7 @@ async def main():
     # await drive(-5,200)
     # await moveMotor('drop','top',100,300)
     # await drive(-20)
-    # await moveMotor('lift','top',250)
+    # await moveMotor('lift','top',349)
 
     # Slot 7
     # boat to latch, crab mission ( 15 )
